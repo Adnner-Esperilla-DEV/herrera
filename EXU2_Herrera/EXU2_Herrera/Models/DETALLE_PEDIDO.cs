@@ -26,7 +26,7 @@ namespace EXU2_Herrera.Models
         public virtual PEDIDO PEDIDO { get; set; }
 
         public virtual PRODUCTO PRODUCTO { get; set; }
-
+       
         public List<DETALLE_PEDIDO> Listar()
         {
             var query = new List<DETALLE_PEDIDO>();
@@ -48,7 +48,7 @@ namespace EXU2_Herrera.Models
 
             return query;
         }
-        public List<DETALLE_PEDIDO> Buscar(int id)
+        public List<DETALLE_PEDIDO> Buscar(string nombre)
         {
             var query = new List<DETALLE_PEDIDO>();
 
@@ -59,7 +59,7 @@ namespace EXU2_Herrera.Models
 
 
                     query = db.DETALLE_PEDIDO.Include("PEDIDO").Include("PRODUCTO")
-                           .Where(x => x.IDPEDIDO==id)
+                           .Where(x => x.PEDIDO.IDCLIENTE.Contains(nombre) )
                            .ToList();
                 }
 

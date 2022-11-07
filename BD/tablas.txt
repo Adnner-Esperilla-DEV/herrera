@@ -1,0 +1,92 @@
+
+CREATE DATABASE bd_sistema
+go
+USE bd_sistema
+go
+
+CREATE TABLE CATEGORIA (
+       IDCATEGORIA          int identity(1,1) NOT NULL,
+       NOMBRE               varchar(50) NOT NULL,
+       DESCRIPCION          text NULL,
+       ESTADO               varchar(1) NOT NULL
+       PRIMARY KEY (IDCATEGORIA)
+)
+go
+
+
+CREATE TABLE PRODUCTO (
+       IDPRODUCTO           int  identity(1,1) NOT NULL,
+       IDCATEGORIA          int NOT NULL,
+       NOMBRE               varchar(50) NOT NULL,
+       DESCRIPCION          TEXT NULL,
+       PRECIO               int NOT NULL,
+       STOCK                int NOT NULL,       
+       ESTADO               varchar(1) NULL,
+       PRIMARY KEY (IDPRODUCTO), 
+       FOREIGN KEY (IDCATEGORIA)
+                             REFERENCES CATEGORIA
+)
+go
+
+
+CREATE TABLE CLIENTE (
+       IDCLIENTE           varchar(20) NOT NULL,              
+       NOMBRE              varchar(20) NOT NULL,
+       APELLIDO            varchar(50) NOT NULL,
+       EMAIL               varchar(50) NOT NULL,
+       ESTADO              varchar(1) NOT NULL
+       PRIMARY KEY (IDCLIENTE )       
+)
+go
+
+CREATE TABLE PEDIDO (
+       IDPEDIDO             int identity(1,1) NOT NULL,
+       FECHA                datetime NOT NULL,
+       ESTADO               varchar(20) NOT NULL,       
+       IDCLIENTE            varchar(20) NOT NULL,
+       PRIMARY KEY (IDPEDIDO), 
+       FOREIGN KEY (IDCLIENTE) REFERENCES CLIENTE
+)
+go
+
+
+CREATE TABLE DETALLE_PEDIDO (
+       IDPEDIDO             int NOT NULL,
+       IDPRODUCTO           int NOT NULL,
+       PRECIO               int NULL,
+       CANTIDAD             int NULL,
+       PRIMARY KEY (IDPEDIDO, IDPRODUCTO), 
+       FOREIGN KEY (IDPRODUCTO) REFERENCES PRODUCTO, 
+       FOREIGN KEY (IDPEDIDO) REFERENCES PEDIDO
+)
+go
+
+if (not exists(select 1 from sys.tables where name = 'EMPLEADO'))
+CREATE TABLE EMPLEADO (
+       IDEMPLEADO          int identity NOT NULL,
+	   DNI                 varchar(80) UNIQUE NOT NULL,
+       NOMBRE              varchar(100) NOT NULL,
+       APELLIDO            varchar(150) NOT NULL,
+       EMAIL               varchar(150) UNIQUE NOT NULL,
+	   CELULAR             varchar(50) NOT NULL,
+	   DIRECCION		   TEXT NOT NULL,
+       ESTADO              varchar(1) NOT NULL
+       PRIMARY KEY (IDEMPLEADO )       
+)
+go
+
+if (not exists(select 1 from sys.tables where name = 'USUARIO'))
+CREATE TABLE USUARIO (
+       IDUSUARIO           int identity NOT NULL,       
+       IDEMPLEADO          int NOT NULL,
+       NOMBRE              varchar(100) UNIQUE NOT NULL,
+       CLAVE			   varchar(250) NOT NULL,
+       NIVEL			   varchar(15) NOT NULL,
+       AVATAR              varchar(250) NULL,
+       ESTADO              int NULL, 
+       PRIMARY KEY (IDUSUARIO) ,
+	   FOREIGN KEY (IDEMPLEADO) REFERENCES EMPLEADO 
+)
+go
+
+

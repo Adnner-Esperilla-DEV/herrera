@@ -2,8 +2,22 @@
 @{
     ViewBag.Title = "Index";
     int id = 0;
+    int? suma = 0;
+    EXU2_Herrera.Models.CATEGORIA obj = new EXU2_Herrera.Models.CATEGORIA();
 }
+<div class="input-group mb-3">
+    @using (Html.BeginForm("Index", "Compras", FormMethod.Post))
+    {
+        <label>Buscar por cliente:</label>
+        <input class="form-control" type="text" name="criterio" required>
+        <br />
+        <div class="input-group-append">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
 
+        
+    }
+</div>
 <table class="table" id="DatatableP">
     <thead>
         <tr>
@@ -22,23 +36,30 @@
 
         @foreach (var m in Model)
         {
+            suma = suma + m.PRECIO * m.CANTIDAD;
+            var data = obj.Obtener(m.PRODUCTO.IDCATEGORIA);
             <tr>
                 <td>@(id++)</td>
                 <td>@(m.IDPEDIDO)</td>
-                
-                <td>@(m.PRODUCTO.IDCATEGORIA)</td>
+
+                <td>@(data.NOMBRE)</td>
                 <td>@(m.PRODUCTO.NOMBRE)</td>
                 <td>@(m.PRECIO)</td>
                 <td>@(m.CANTIDAD)</td>
                 <td>@(m.PRECIO* m.CANTIDAD)</td>
 
-                @*<td style="align-content:center">
-                    <a href="~/Empleado/Visualizar/@m.IDEMPLEADO" class="btn btn-xs btn-warning">Visualizar</a>
-                    <a href="~/Empleado/AgregarEditar/@m.IDEMPLEADO" class="btn btn-xs btn-primary">Modificar</a>
-                    <a href="~/Empleado/Eliminar/@m.IDEMPLEADO" class="btn btn-xs btn-danger" onclick="return confirmar('¿Está seguro de eliminar el registro');">Eliminar</a>
-                </td>*@
             </tr>
         }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>TOTAL</td>
+        <td>@suma</td>
+
+    </tr>
     </tbody>
 </table>
 <script>

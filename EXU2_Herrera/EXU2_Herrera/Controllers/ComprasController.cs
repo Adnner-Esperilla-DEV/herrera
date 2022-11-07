@@ -22,8 +22,8 @@ namespace EXU2_Herrera.Controllers
             }
             else
             {
-                var data = objPed.Obtener(criterio);
-                return View(objde.Buscar(data.IDPEDIDO));
+                
+                return View(objde.Buscar(criterio));
             }
         }
     }

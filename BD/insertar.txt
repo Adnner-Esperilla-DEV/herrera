@@ -1,0 +1,97 @@
+insert into categoria (nombre, estado) values('Camisas','A')
+insert into categoria (nombre, estado) values('Zapatillas','A')
+insert into categoria (nombre, estado) values('Pantalones','I')
+insert into categoria (nombre, estado) values('Casacas','A')
+insert into categoria (nombre, estado) values('Polos','A')
+
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (1,'Jhon Holden', 'Vestir,Talla M', 75,50,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (1,'Jhon Holden', 'Vestir,Talla XL', 75,35,'I')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (1,'Tommy', 'Sport,Talla L', 80,25,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (1,'Tommy', 'Vestir Talla XL', 90,25,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (1,'Baronet', 'Vestir Talla XL', 150,100,'I')
+
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (2,'Fila', 'Moderno, color blanco, Talla 41', 180,25,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (2,'Fila', 'Moderno, color nego con rojo, Talla 42', 250,35,'I')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (2,'Reebok', 'Clasico, color rojo, Talla 40', 175,15,'A')
+
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (3,'Dokers', 'Pantalón Drill,  Color Azul, Talla 34', 220,25,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (3,'Jhon Holden', 'Moderno, color nego con negro, Talla 42', 250,10,'I')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (3,'Levis', 'Clasico, color verde olivo, Talla 30', 200,18,'A')
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (3,'Dokers', 'Pantalón Signature Marrón, Talla: 34', 190.90,41,'A')
+
+insert into producto (idcategoria,nombre,descripcion,precio,stock,estado)
+values (4,'Spyder', 'Spyder Prymo Down Jacket 511373 Roja / Negro, Talla: M', 440,8,'A')
+
+
+insert into cliente(idcliente,nombre,apellido,email,estado) 
+values ('admin','Administrador','Admin','admin@hotmail.com','A')
+insert into cliente(idcliente,nombre,apellido,email,estado) 
+values ('elanchipa','Enrique','Lanchipa Valencia','elanchipa@hotmail.es','I')
+insert into cliente(idcliente,nombre,apellido,email,estado) 
+values ('mflores','Maria','Flores','mflores@upt.edu.pe','A')
+insert into cliente(idcliente,nombre,apellido,email,estado)  
+values ('jsanchez','Jony','Sanchez','jsanchez@yahoo.es','A')
+
+
+
+insert into pedido(fecha,estado,idcliente) values ('20-08-2018','Realizado','admin')
+insert into pedido(fecha,estado,idcliente) values ('20-08-2018','Realizado','elanchipa')
+insert into pedido(fecha,estado,idcliente) values ('25-08-2018','Realizado','mflores')
+insert into pedido(fecha,estado,idcliente) values ('26-01-2018','Realizado','mflores')
+
+
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (1,1,75,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (1,4,90,2)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (2,1,120,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (2,2,150,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (2,3,280,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (3,1,125,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (3,2,100,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (3,5,250,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (3,6,85,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (4,2,440,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (4,3,1,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (4,4,300,1)
+insert into detalle_pedido(idpedido,idproducto,precio,cantidad) values (4,5,130,1)
+
+insert into empleado(dni,nombre,apellido,email,celular, direccion,estado) 
+values ('12345678','Enrique','Lanchipa Valencia','elanchipa@upt.pe','952364852','Av. Bolognesi 15847','A')
+insert into empleado(dni,nombre,apellido,email,celular, direccion,estado) 
+values ('22445566','Elard','Rodriguez Marca','erodriguez@virtual.upt.pe','970154895','Calle Deustua S/N','A')
+insert into empleado(dni,nombre,apellido,email,celular, direccion,estado) 
+values ('12378925','Liliana','Vega Bernal','lvega@gmail.com','9985254852','AV. Capanique 18545','A')
+
+SELECT * FROM EMPLEADO
+
+
+insert into usuario(idempleado,nombre,clave,nivel,avatar,estado) 
+values (1,'elanchipa','123456','Administrador','usuario1.png', 1)
+insert into usuario(idempleado,nombre,clave,nivel,avatar,estado) 
+values (2,'erodriguez','1234','Supervisor','usuario2.png', 0)
+insert into usuario(idempleado,nombre,clave,nivel,avatar,estado) 
+values (3,'lvega','1234','Usuario','usuario3.png', 1)
+
+SELECT * FROM USUARIO
+
+select * from categoria
+go
+select * from producto
+go
+select * from cliente
+go
+select * from pedido
+go
+select * from detalle_pedido
+go
